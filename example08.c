@@ -11,6 +11,7 @@ typedef struct {
 } treasers;
 
 void printJ(treasers *pJ){
+    // the arrow operator -> is similar to (* pointerStruct).content
     int total = pJ->price * pJ->quantity;
     printf("The total is %d\n", total);
 }
