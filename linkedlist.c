@@ -29,7 +29,7 @@ int main(int argc, char *argv[]){
     int option;
     do
     {
-        printf("\n\n *****MAIN MENU *****");
+        printf("\n\n ***** MAIN MENU *****");
         printf("\n  1: Create a list ");
         printf("\n  2: Display the list ");
         printf("\n  3: Add a node at the beggining ");
@@ -56,9 +56,9 @@ int main(int argc, char *argv[]){
                 
             case 4: start = insert_end(start);
                 break;
-                /*
             case 5: start = insert_before(start);
                 break;
+                /*
             case 6: start = insert_after(start);
                 break;
             case 7: start = delete_beg(start);
@@ -145,5 +145,26 @@ struct node *insert_end(struct node *start){
         ptr = ptr->next;
     } 
     ptr->next = new_node;
+    return start;
+}
+
+struct node *insert_before(struct node *start){
+    struct node *ptr, *new_node, *pre_ptr;
+    int num, num_before;
+    printf("\n Enter the data : ");
+    scanf("%d", &num);
+    new_node = (struct node *)malloc(sizeof(struct node));
+    new_node -> data = num;
+    new_node -> next = NULL;
+    ptr = start;
+    pre_ptr = start;
+    printf("\n Enter the node : ");
+    scanf("%d", &num_before);
+    while((*ptr).data != num_before){
+        pre_ptr = ptr;
+        ptr = ptr->next;
+    }
+    pre_ptr->next = new_node;
+    new_node->next = ptr;
     return start;
 }
