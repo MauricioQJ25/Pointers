@@ -22,7 +22,7 @@ struct node *delete_node(struct node *);
 struct node *delete_after(struct node *);
 struct node *delete_list(struct node *);
 struct node *sort_list(struct node *);
-
+struct node *reverse_list(struct node *start);
 
 int main(int argc, char *argv[]){
     printf("This is an example of how to create a linked list\n");
@@ -42,7 +42,8 @@ int main(int argc, char *argv[]){
         printf("\n 10: Delete a node after a given node");
         printf("\n 11: Delete the entire list ");
         printf("\n 12: Sort the list ");
-        printf("\n 13: Exit");
+        printf("\n 13: Reverse the list ");
+        printf("\n 14: Exit");
         printf("\n\n Enter your option : ");
         scanf("%d", &option);
         switch(option){
@@ -74,10 +75,13 @@ int main(int argc, char *argv[]){
             case 12: start = sort_list(start);
                 break;
                 */
+
+            case 13: start = reverse_list(start);
+                break;
             default: 
                 break;
         }   
-    } while (option != 13);
+    } while (option != 14);
     getchar();
     return 0;
 }
@@ -167,4 +171,20 @@ struct node *insert_before(struct node *start){
     pre_ptr->next = new_node;
     new_node->next = ptr;
     return start;
+}
+
+struct node *reverse_list(struct node *start){
+    struct node *prevNode = NULL;
+    struct node *nextNode = NULL;
+    struct node *head = start;
+
+    while (head != NULL){
+        nextNode = head->next;
+        head->next = prevNode;
+        prevNode = head;
+        head = nextNode;
+    }
+    head = prevNode;
+
+    return head;
 }
