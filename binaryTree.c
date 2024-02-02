@@ -48,7 +48,7 @@ void printtree(treenode* node ){
     return;
 }
 
-/*
+/* 
 treenode* createBalanceTree(){
     int option = 0;
     printf("Enter -1 to exit");
@@ -60,8 +60,23 @@ treenode* createBalanceTree(){
 
     }
 
-}
+} 
 */
+
+treenode* insertNode( treenode* current, int value){
+    if (current ==  NULL){
+        current  = createnode(value);
+        return current;
+    }
+    if (current->data < value){
+        current->left = insertNode(current->left, value);
+    }
+    else if(current->data > value){
+        current->right = insertNode(current->right, value);
+    }
+    return current;
+}
+
 
 treenode* invertTree(treenode* root){
     if(root == NULL){
@@ -76,7 +91,16 @@ treenode* invertTree(treenode* root){
 
 int main(void){
     printf("This program shows how to create a bynary tree\n");
- 
+    treenode *head = NULL;
+
+    head = insertNode(head, 5);
+    head = insertNode(head, 3);
+    head = insertNode(head, 6);
+    head = insertNode(head, 1);
+    head = insertNode(head, 4);
+    
+    printtree(head);
+    /*
     treenode *n1 = createnode(11);
     treenode *n2 = createnode(12);
     treenode *n3 = createnode(13);
@@ -93,5 +117,6 @@ int main(void){
     invertTree(n1);
     printtree(n1);
     free(n1);
+    */
     return 0;
 }
